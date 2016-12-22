@@ -1,4 +1,4 @@
-use glutin::{Event, MouseButton, ElementState};
+use glutin::Event;
 
 use vec2;
 
@@ -9,10 +9,6 @@ pub struct Mouse {
     last: [isize; 2],
 
     focused: bool,
-    left: bool,
-    right: bool,
-    middle: bool,
-    other: u8,
 
     position: [isize; 2],
     delta: [isize; 2],
@@ -25,10 +21,6 @@ impl Mouse {
             last: [0isize; 2],
 
             focused: true,
-            left: false,
-            right: false,
-            middle: false,
-            other: 0u8,
 
             position: [0isize; 2],
             delta: [0isize; 2],
@@ -39,19 +31,6 @@ impl Mouse {
         match event {
             &Event::MouseEntered => {self.focused = true},
             &Event::MouseLeft => {self.focused = false},
-            &Event::MouseInput(state, which) => {
-                let value = match state {
-                    ElementState::Released => false,
-                    ElementState::Pressed => true,
-                };
-
-                match which {
-                    MouseButton::Left => {self.left = value},
-                    MouseButton::Right => {self.right = value},
-                    MouseButton::Middle => {self.middle = value},
-                    MouseButton::Other(index) => {self.other = index},
-                }
-            },
             &Event::MouseMoved(x, y) => {
                 let x = x as isize;
                 let y = y as isize;
@@ -71,9 +50,6 @@ impl Mouse {
     }
 
     pub fn get_focused(&self) -> bool { self.focused }
-    pub fn get_left(&self) -> bool { self.left }
-    pub fn get_right(&self) -> bool { self.right }
-    pub fn get_middle(&self) -> bool { self.middle }
 
     pub fn get_position(&self) -> &[isize; 2] { &self.position }
     pub fn get_delta(&self) -> &[isize; 2] { &self.delta }

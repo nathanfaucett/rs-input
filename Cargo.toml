@@ -15,4 +15,13 @@ exclude = ["example"]
 [dependencies]
 glutin = "*"
 
+vector = {git = "https://github.com/nathanfaucett/rs-vector.git"}
+stack = {git = "https://github.com/nathanfaucett/rs-stack.git"}
+
+hash_map = {git = "https://github.com/nathanfaucett/rs-hash_map.git"}
+map = {git = "https://github.com/nathanfaucett/rs-map.git"}
+insert = {git = "https://github.com/nathanfaucett/rs-insert.git"}
+
 vec2 = {git = "https://github.com/nathanfaucett/rs-vec2.git"}
+
+shared = {git = "https://github.com/nathanfaucett/rs-shared.git"}
