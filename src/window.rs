@@ -42,7 +42,7 @@ impl Window {
                 self.height = h as usize;
                 self.resized = true;
             },
-            _ => {},
+            _ => (),
         }
     }
 

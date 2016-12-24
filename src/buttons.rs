@@ -3,9 +3,6 @@ use core::fmt;
 
 use glutin::{Event, ElementState, MouseButton};
 
-use vector::Vector;
-use stack::Stack;
-
 use hash_map::HashMap;
 use map::Map;
 use insert::Insert;
@@ -14,14 +11,12 @@ use button::Button;
 
 
 pub struct Buttons {
-    vec: Vector<Button>,
     map: HashMap<String, Button>,
 }
 
 impl Buttons {
     pub fn new() -> Self {
         Buttons {
-            vec: Vector::new(),
             map: HashMap::new(),
         }
     }
@@ -35,9 +30,9 @@ impl Buttons {
                 };
 
                 match which {
-                    MouseButton::Left => self.update(String::from("mouse0"), value, pressed, current_time, current_frame),
-                    MouseButton::Right => self.update(String::from("mouse1"), value, pressed, current_time, current_frame),
-                    MouseButton::Middle => self.update(String::from("mouse2"), value, pressed, current_time, current_frame),
+                    MouseButton::Left => self.update(String::from("Mouse0"), value, pressed, current_time, current_frame),
+                    MouseButton::Right => self.update(String::from("Mouse1"), value, pressed, current_time, current_frame),
+                    MouseButton::Middle => self.update(String::from("Mouse2"), value, pressed, current_time, current_frame),
                     MouseButton::Other(_) => {},
                 }
             },
@@ -58,7 +53,7 @@ impl Buttons {
                     };
                 }
             },
-            _ => {},
+            _ => (),
         }
     }
 
@@ -91,7 +86,6 @@ impl Buttons {
 
     fn add_button(&mut self, name: String) {
         let button = Button::new(name.clone());
-        self.vec.push(button.clone());
         self.map.insert(name, button);
     }
 }

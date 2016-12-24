@@ -1,8 +1,7 @@
 use collections::string::String;
-use shared::Shared;
 
 
-pub struct ButtonData {
+pub struct Button {
     name: String,
 
     time_down: f64,
@@ -17,64 +16,55 @@ pub struct ButtonData {
     first: bool,
 }
 
-#[derive(Clone)]
-pub struct Button {
-    data: Shared<ButtonData>,
-}
-
 impl Button {
     pub fn new(name: String) -> Self {
         Button {
-            data: Shared::new(ButtonData {
-                name: name,
+            name: name,
 
-                time_down: -1f64,
-                time_up: -1f64,
+            time_down: -1f64,
+            time_up: -1f64,
 
-                frame_down: 0usize,
-                frame_up: 0usize,
+            frame_down: 0usize,
+            frame_up: 0usize,
 
-                value: 0.0f64,
-                pressed: false,
+            value: 0.0f64,
+            pressed: false,
 
-                first: true,
-            })
+            first: true,
         }
     }
 
-    pub fn get_name(&self) -> &String { &self.data.name }
+    pub fn get_name(&self) -> &String { &self.name }
 
-    pub fn get_time_down(&self) -> f64 { self.data.time_down }
-    pub fn get_time_up(&self) -> f64 { self.data.time_up }
+    pub fn get_time_down(&self) -> f64 { self.time_down }
+    pub fn get_time_up(&self) -> f64 { self.time_up }
 
-    pub fn get_frame_down(&self) -> usize { self.data.frame_down }
-    pub fn get_frame_up(&self) -> usize { self.data.frame_up }
+    pub fn get_frame_down(&self) -> usize { self.frame_down }
+    pub fn get_frame_up(&self) -> usize { self.frame_up }
 
-    pub fn get_value(&self) -> f64 { self.data.value }
-    pub fn get_pressed(&self) -> bool { self.data.pressed }
+    pub fn get_value(&self) -> f64 { self.value }
+    pub fn get_pressed(&self) -> bool { self.pressed }
 
     pub fn on(&mut self, value: f64, current_time: f64, current_frame: usize) {
-        let ref mut data = self.data;
 
-        if data.first {
-            data.first = false;
-            data.frame_down = current_frame;
-            data.time_down = current_time;
+        if self.first {
+            self.first = false;
+            self.frame_down = current_frame;
+            self.time_down = current_time;
         }
 
-        data.value = value;
-        data.pressed = true;
+        self.value = value;
+        self.pressed = true;
     }
     pub fn off(&mut self, value: f64, current_time: f64, current_frame: usize) {
-        let ref mut data = self.data;
 
-        data.frame_up = current_frame;
-        data.time_up = current_time;
+        self.frame_up = current_frame;
+        self.time_up = current_time;
 
-        data.value = value;
-        data.pressed = false;
+        self.value = value;
+        self.pressed = false;
 
-        data.first = true;
+        self.first = true;
     }
 
     pub fn update(&mut self, value: f64, pressed: bool, current_time: f64, current_frame: usize) {

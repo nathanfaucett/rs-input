@@ -15,12 +15,17 @@ exclude = ["example"]
 [dependencies]
 glutin = "*"
 
+clamp = {git = "https://github.com/nathanfaucett/rs-clamp.git"}
+
 vector = {git = "https://github.com/nathanfaucett/rs-vector.git"}
 stack = {git = "https://github.com/nathanfaucett/rs-stack.git"}
+iterable = {git = "https://github.com/nathanfaucett/rs-iterable.git"}
+collection = {git = "https://github.com/nathanfaucett/rs-collection.git"}
 
 hash_map = {git = "https://github.com/nathanfaucett/rs-hash_map.git"}
 map = {git = "https://github.com/nathanfaucett/rs-map.git"}
 insert = {git = "https://github.com/nathanfaucett/rs-insert.git"}
+iterable_mut = {git = "https://github.com/nathanfaucett/rs-iterable_mut.git"}
 
 vec2 = {git = "https://github.com/nathanfaucett/rs-vec2.git"}
 
